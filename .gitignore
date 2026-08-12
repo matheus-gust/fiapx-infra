@@ -1,5 +1,10 @@
-.terraform/
-*.tfstate
-*.tfstate.backup
-*.tfvars
+﻿target/
+*.class
+*.jar
+*.war
+.idea/
+*.iml
+.vscode/
+.DS_Store
+*.log
 .env
