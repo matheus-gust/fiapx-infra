@@ -34,7 +34,8 @@ services:
       retries: 5
 
   minio:
-    image: minio/minio:latest
+    image: cgr.dev/chainguard/minio:latest
+    user: root
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: minioadmin
@@ -45,7 +46,7 @@ services:
     volumes:
       - minio_data:/data
     healthcheck:
-      test: ["CMD", "mc", "ready", "local"]
+      test: ["CMD-SHELL", "bash -c 'echo > /dev/tcp/127.0.0.1/9000' || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
